@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2016 5:00:34 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="speedvoterdb" name="se.wegelius.speedvoter.voteservice.model.hibernateobjects.GateHO" optimistic-lock="version" table="gate">
+    <id name="gateId" type="java.lang.Integer">
+      <column name="gate_id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="se.wegelius.speedvoter.voteservice.model.hibernateobjects.EventsHO" fetch="select" name="events">
+      <column name="gate_event_id_fk" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="se.wegelius.speedvoter.voteservice.model.hibernateobjects.VoterHO" fetch="select" name="voter">
+      <column name="gate_voter_id_fk" not-null="true"/>
+    </many-to-one>
+    <property name="accessCode" type="string">
+      <column length="16" name="access_code" unique="true"/>
+    </property>
+    <property name="active" type="java.lang.Boolean">
+      <column name="active"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="speakerses" table="speakers">
+      <key>
+        <column name="speakers_access_code_fk"/>
+      </key>
+      <one-to-many class="se.wegelius.speedvoter.voteservice.model.hibernateobjects.SpeakersHO"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="votersVoteses" table="voters_votes">
+      <key>
+        <column name="voters_votes_access_code_fk" not-null="true"/>
+      </key>
+      <one-to-many class="se.wegelius.speedvoter.voteservice.model.hibernateobjects.VotersVotesHO"/>
+    </set>
+  </class>
+</hibernate-mapping>

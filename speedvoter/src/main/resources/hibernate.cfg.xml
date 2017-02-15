@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.password">voter_admin</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3307/speedvoterdb</property>
+    <property name="hibernate.connection.username">voter_admin</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <!-- JDBC connection pool (use the built-in) -->
+    <property name="connection.pool_size">10</property>
+    <!-- SQL dialect -->
+    <property name="dialect">org.hibernate.dialect.HSQLDialect</property>
+    <!-- Disable the second-level cache -->
+    <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+    <!-- Echo all executed SQL to stdout -->
+    <property name="show_sql">true</property>
+    <!-- Drop and re-create the database schema on startup -->
+    <!-- <property name="hbm2ddl.auto">create</property> -->
+    <mapping resource="se/wegelius/speedvoter/voteservice/model/hibernateobjects/Elections.hbm.xml"/>
+    <mapping resource="se/wegelius/speedvoter/voteservice/model/hibernateobjects/Speakers.hbm.xml"/>
+    <mapping resource="se/wegelius/speedvoter/voteservice/model/hibernateobjects/Userrights.hbm.xml"/>
+    <mapping resource="se/wegelius/speedvoter/voteservice/model/hibernateobjects/Options.hbm.xml"/>
+    <mapping resource="se/wegelius/speedvoter/voteservice/model/hibernateobjects/Events.hbm.xml"/>
+    <mapping resource="se/wegelius/speedvoter/voteservice/model/hibernateobjects/Votes.hbm.xml"/>
+    <mapping resource="se/wegelius/speedvoter/voteservice/model/hibernateobjects/Orgs.hbm.xml"/>
+    <mapping resource="se/wegelius/speedvoter/voteservice/model/hibernateobjects/Voter.hbm.xml"/>
+    <mapping resource="se/wegelius/speedvoter/voteservice/model/hibernateobjects/Gate.hbm.xml"/>
+    <mapping resource="se/wegelius/speedvoter/voteservice/model/hibernateobjects/Users.hbm.xml"/>
+    <mapping resource="se/wegelius/speedvoter/voteservice/model/hibernateobjects/VotersVotes.hbm.xml"/>
+    <mapping resource="se/wegelius/speedvoter/voteservice/model/hibernateobjects/UsersUserrights.hbm.xml"/>
+    <mapping resource="se/wegelius/speedvoter/voteservice/model/hibernateobjects/Series.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

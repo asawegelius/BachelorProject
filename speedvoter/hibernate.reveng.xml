@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="speedvoterdb"/>
+  <table-filter match-name="votes"/>
+  <table-filter match-name="results"/>
+  <table-filter match-name="userrights"/>
+  <table-filter match-name="orgs"/>
+  <table-filter match-name="optionsproperty2"/>
+  <table-filter match-name="options"/>
+  <table-filter match-name="events"/>
+  <table-filter match-name="gate"/>
+  <table-filter match-name="passwords"/>
+  <table-filter match-name="speakers"/>
+  <table-filter match-name="userlist"/>
+  <table-filter match-name="elections"/>
+  <table-filter match-name="series"/>
+  <table-filter match-name="optionsproperty1"/>
+</hibernate-reverse-engineering>

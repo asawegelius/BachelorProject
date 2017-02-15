@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2016 5:00:34 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="speedvoterdb" name="se.wegelius.speedvoter.voteservice.model.hibernateobjects.SeriesHO" optimistic-lock="version" table="series">
+    <id name="seriesId" type="java.lang.Integer">
+      <column name="series_id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="accessCode" type="string">
+      <column length="16" name="access_code" unique="true"/>
+    </property>
+    <property name="serie" type="string">
+      <column length="2" name="serie"/>
+    </property>
+    <property name="vacant" type="java.lang.Boolean">
+      <column name="vacant"/>
+    </property>
+  </class>
+</hibernate-mapping>

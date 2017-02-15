@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2016 5:00:34 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="speedvoterdb" name="se.wegelius.speedvoter.voteservice.model.hibernateobjects.UsersUserrightsHO" optimistic-lock="version" table="users_userrights">
+    <id name="usersUserrightsId" type="java.lang.Integer">
+      <column name="users_userrights_id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="se.wegelius.speedvoter.voteservice.model.hibernateobjects.UserrightsHO" fetch="select" name="userrights">
+      <column name="users_userrights_userrights_id_fk" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="se.wegelius.speedvoter.voteservice.model.hibernateobjects.UsersHO" fetch="select" name="users">
+      <column name="users_userrights_user_id_fk" not-null="true"/>
+    </many-to-one>
+  </class>
+</hibernate-mapping>

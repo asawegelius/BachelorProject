@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2016 5:00:34 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="speedvoterdb" name="se.wegelius.speedvoter.voteservice.model.hibernateobjects.SpeakersHO" optimistic-lock="version" table="speakers">
+    <id name="speakersId" type="java.lang.Integer">
+      <column name="speakers_id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="se.wegelius.speedvoter.voteservice.model.hibernateobjects.EventsHO" fetch="select" name="events">
+      <column name="speakers_event_id_fk" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="se.wegelius.speedvoter.voteservice.model.hibernateobjects.GateHO" fetch="select" name="gate">
+      <column name="speakers_access_code_fk"/>
+    </many-to-one>
+    <property name="time" type="time">
+      <column length="8" name="time"/>
+    </property>
+  </class>
+</hibernate-mapping>

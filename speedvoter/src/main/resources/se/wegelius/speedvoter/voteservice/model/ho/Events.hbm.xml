@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2016 5:00:34 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="speedvoterdb" name="se.wegelius.speedvoter.voteservice.model.hibernateobjects.EventsHO" optimistic-lock="version" table="events">
+    <id name="eventId" type="java.lang.Integer">
+      <column name="event_id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="se.wegelius.speedvoter.voteservice.model.hibernateobjects.OrgsHO" fetch="select" name="orgs">
+      <column name="events_org_id_fk"/>
+    </many-to-one>
+    <property name="eventName" type="string">
+      <column length="45" name="event_name"/>
+    </property>
+    <property name="startDate" type="timestamp">
+      <column length="19" name="start_date"/>
+    </property>
+    <property name="endDate" type="timestamp">
+      <column length="19" name="end_date"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="speakerses" table="speakers">
+      <key>
+        <column name="speakers_event_id_fk" not-null="true"/>
+      </key>
+      <one-to-many class="se.wegelius.speedvoter.voteservice.model.hibernateobjects.SpeakersHO"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="gates" table="gate">
+      <key>
+        <column name="gate_event_id_fk" not-null="true"/>
+      </key>
+      <one-to-many class="se.wegelius.speedvoter.voteservice.model.hibernateobjects.GateHO"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="electionses" table="elections">
+      <key>
+        <column name="elections_event_id_fk" not-null="true"/>
+      </key>
+      <one-to-many class="se.wegelius.speedvoter.voteservice.model.hibernateobjects.ElectionsHO"/>
+    </set>
+  </class>
+</hibernate-mapping>

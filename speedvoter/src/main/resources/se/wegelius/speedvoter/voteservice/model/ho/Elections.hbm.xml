@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 16, 2016 5:00:34 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="speedvoterdb" name="se.wegelius.speedvoter.voteservice.model.hibernateobjects.ElectionsHO" optimistic-lock="version" table="elections">
+    <id name="electionId" type="java.lang.Integer">
+      <column name="election_id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="se.wegelius.speedvoter.voteservice.model.hibernateobjects.EventsHO" fetch="select" name="events">
+      <column name="elections_event_id_fk" not-null="true"/>
+    </many-to-one>
+    <property name="post" type="string">
+      <column length="45" name="post"/>
+    </property>
+    <property name="date" type="timestamp">
+      <column length="19" name="date"/>
+    </property>
+    <property name="minVotes" type="java.lang.Integer">
+      <column name="min_votes"/>
+    </property>
+    <property name="maxVotes" type="java.lang.Integer">
+      <column name="max_votes"/>
+    </property>
+    <property name="secret" type="java.lang.Boolean">
+      <column name="secret"/>
+    </property>
+    <property name="active" type="java.lang.Boolean">
+      <column name="active"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="voteses" table="votes">
+      <key>
+        <column name="votes_election_id_fk" not-null="true"/>
+      </key>
+      <one-to-many class="se.wegelius.speedvoter.voteservice.model.hibernateobjects.VotesHO"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="optionses" table="options">
+      <key>
+        <column name="options_election_id_fk" not-null="true"/>
+      </key>
+      <one-to-many class="se.wegelius.speedvoter.voteservice.model.hibernateobjects.OptionsHO"/>
+    </set>
+  </class>
+</hibernate-mapping>
