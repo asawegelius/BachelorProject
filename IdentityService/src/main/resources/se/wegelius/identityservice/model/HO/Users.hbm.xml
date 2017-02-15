@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2017 4:29:05 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="identity_db" name="se.wegelius.identityservice.model.HO.UsersHO" optimistic-lock="version" table="users">
+    <id name="usersId" type="java.lang.Integer">
+      <column name="users_id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="firstName" type="string">
+      <column length="60" name="first_name"/>
+    </property>
+    <property name="lastName" type="string">
+      <column length="60" name="last_name"/>
+    </property>
+    <property name="email" type="string">
+      <column length="60" name="email" unique="true"/>
+    </property>
+    <property name="mobile" type="string">
+      <column length="12" name="mobile"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="loginses" table="logins">
+      <key>
+        <column name="user_name" unique="true"/>
+      </key>
+      <one-to-many class="se.wegelius.identityservice.model.HO.LoginsHO"/>
+    </set>
+  </class>
+</hibernate-mapping>

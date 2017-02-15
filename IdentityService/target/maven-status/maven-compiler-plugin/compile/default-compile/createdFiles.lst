@@ -1,0 +1,11 @@
+se\wegelius\identityservice\endpoints\LoginsEndpoint.class
+se\wegelius\identityservice\model\HO\UsersHO.class
+se\wegelius\identityservice\dao\UsersDao.class
+se\wegelius\identityservice\dao\IGenericDao.class
+se\wegelius\identityservice\dao\HibernateUtil.class
+se\wegelius\identityservice\dao\GenericDao.class
+se\wegelius\identityservice\model\Logins.class
+se\wegelius\identityservice\model\HO\LoginsHO.class
+se\wegelius\identityservice\dao\LoginsDao.class
+se\wegelius\identityservice\endpoints\UsersEndpoint.class
+se\wegelius\identityservice\model\Users.class

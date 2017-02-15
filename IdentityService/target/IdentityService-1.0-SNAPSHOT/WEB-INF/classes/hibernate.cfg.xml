@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.password">identity_admin</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3307/identity_db</property>
+    <property name="hibernate.connection.username">identity_admin</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <!-- JDBC connection pool (use the built-in) -->
+    <property name="connection.pool_size">10</property>
+    <!-- SQL dialect -->
+    <property name="dialect">org.hibernate.dialect.HSQLDialect</property>
+    <!-- Disable the second-level cache -->
+    <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+    <!-- Echo all executed SQL to stdout -->
+    <property name="show_sql">true</property>
+    <mapping resource="se/wegelius/identityservice/model/HO/Users.hbm.xml"/>
+    <mapping resource="se/wegelius/identityservice/model/HO/Logins.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

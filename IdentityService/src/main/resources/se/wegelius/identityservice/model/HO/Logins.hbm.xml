@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 15, 2017 4:29:05 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="identity_db" name="se.wegelius.identityservice.model.HO.LoginsHO" optimistic-lock="version" table="logins">
+    <id name="loginsId" type="java.lang.Integer">
+      <column name="logins_id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="se.wegelius.identityservice.model.HO.UsersHO" fetch="select" name="users">
+      <column name="user_name" unique="true"/>
+    </many-to-one>
+    <property name="passwordSalt" type="string">
+      <column length="256" name="password_salt"/>
+    </property>
+    <property name="passwordHash" type="string">
+      <column length="256" name="password_hash"/>
+    </property>
+  </class>
+</hibernate-mapping>
