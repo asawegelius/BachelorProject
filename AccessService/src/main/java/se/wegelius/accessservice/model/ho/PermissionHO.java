@@ -1,5 +1,5 @@
 package se.wegelius.accessservice.model.ho;
-// Generated Feb 18, 2017 12:40:42 AM by Hibernate Tools 4.3.1
+// Generated Feb 20, 2017 9:49:45 AM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -30,46 +30,48 @@ public class PermissionHO  implements java.io.Serializable {
        this.target = target;
        this.rolePermissions = rolePermissions;
     }
-   
+
     public Integer getPermissionId() {
-        return this.permissionId;
+        return permissionId;
     }
-    
+
     public void setPermissionId(Integer permissionId) {
         this.permissionId = permissionId;
     }
+
     public ClientHO getClient() {
-        return this.client;
+        return client;
     }
-    
+
     public void setClient(ClientHO client) {
         this.client = client;
     }
+
     public String getObject() {
-        return this.object;
+        return object;
     }
-    
+
     public void setObject(String object) {
         this.object = object;
     }
+
     public String getTarget() {
-        return this.target;
+        return target;
     }
-    
+
     public void setTarget(String target) {
         this.target = target;
     }
+
     public Set<RolePermissionHO> getRolePermissions() {
-        return this.rolePermissions;
+        return rolePermissions;
     }
-    
+
     public void setRolePermissions(Set<RolePermissionHO> rolePermissions) {
         this.rolePermissions = rolePermissions;
     }
-
-
-
-
+   
+ 
 }
 
 

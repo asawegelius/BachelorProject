@@ -1,5 +1,5 @@
 package se.wegelius.accessservice.model.ho;
-// Generated Feb 18, 2017 12:40:42 AM by Hibernate Tools 4.3.1
+// Generated Feb 20, 2017 9:49:45 AM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -30,46 +30,48 @@ public class RoleHO  implements java.io.Serializable {
        this.rolePermissions = rolePermissions;
        this.userRoles = userRoles;
     }
-   
+
     public Integer getRoleId() {
-        return this.roleId;
+        return roleId;
     }
-    
+
     public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
+
     public String getRoleName() {
-        return this.roleName;
+        return roleName;
     }
-    
+
     public void setRoleName(String roleName) {
         this.roleName = roleName;
     }
+
     public String getRoleDescription() {
-        return this.roleDescription;
+        return roleDescription;
     }
-    
+
     public void setRoleDescription(String roleDescription) {
         this.roleDescription = roleDescription;
     }
+
     public Set<RolePermissionHO> getRolePermissions() {
-        return this.rolePermissions;
+        return rolePermissions;
     }
-    
+
     public void setRolePermissions(Set<RolePermissionHO> rolePermissions) {
         this.rolePermissions = rolePermissions;
     }
+
     public Set<UserRoleHO> getUserRoles() {
-        return this.userRoles;
+        return userRoles;
     }
-    
+
     public void setUserRoles(Set<UserRoleHO> userRoles) {
         this.userRoles = userRoles;
     }
-
-
-
-
+   
+ 
 }
 
 

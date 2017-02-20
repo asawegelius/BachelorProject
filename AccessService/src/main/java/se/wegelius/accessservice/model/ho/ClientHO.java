@@ -1,5 +1,5 @@
 package se.wegelius.accessservice.model.ho;
-// Generated Feb 18, 2017 12:40:42 AM by Hibernate Tools 4.3.1
+// Generated Feb 20, 2017 9:49:45 AM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -14,8 +14,10 @@ public class ClientHO  implements java.io.Serializable {
      private int clientId;
      private UserHO user;
      private String clientName;
+     private String clientSecret;
      private String clientDescription;
      private String redirectUri;
+     private String grantType;
      private Set<PermissionHO> permissions = new HashSet<PermissionHO>(0);
 
     public ClientHO() {
@@ -25,61 +27,82 @@ public class ClientHO  implements java.io.Serializable {
     public ClientHO(int clientId) {
         this.clientId = clientId;
     }
-    public ClientHO(int clientId, UserHO user, String clientName, String clientDescription, String redirectUri, Set<PermissionHO> permissions) {
+    public ClientHO(int clientId, UserHO user, String clientName, String clientSecret, String clientDescription, String redirectUri, String grantType, Set<PermissionHO> permissions) {
        this.clientId = clientId;
        this.user = user;
        this.clientName = clientName;
+       this.clientSecret = clientSecret;
        this.clientDescription = clientDescription;
        this.redirectUri = redirectUri;
+       this.grantType = grantType;
        this.permissions = permissions;
     }
-   
+
     public int getClientId() {
-        return this.clientId;
+        return clientId;
     }
-    
+
     public void setClientId(int clientId) {
         this.clientId = clientId;
     }
+
     public UserHO getUser() {
-        return this.user;
+        return user;
     }
-    
+
     public void setUser(UserHO user) {
         this.user = user;
     }
+
     public String getClientName() {
-        return this.clientName;
+        return clientName;
     }
-    
+
     public void setClientName(String clientName) {
         this.clientName = clientName;
     }
-    public String getClientDescription() {
-        return this.clientDescription;
+
+    public String getClientSecret() {
+        return clientSecret;
     }
-    
+
+    public void setClientSecret(String clientSecret) {
+        this.clientSecret = clientSecret;
+    }
+
+    public String getClientDescription() {
+        return clientDescription;
+    }
+
     public void setClientDescription(String clientDescription) {
         this.clientDescription = clientDescription;
     }
+
     public String getRedirectUri() {
-        return this.redirectUri;
+        return redirectUri;
     }
-    
+
     public void setRedirectUri(String redirectUri) {
         this.redirectUri = redirectUri;
     }
-    public Set<PermissionHO> getPermissions() {
-        return this.permissions;
+
+    public String getGrantType() {
+        return grantType;
     }
-    
+
+    public void setGrantType(String grantType) {
+        this.grantType = grantType;
+    }
+
+    public Set<PermissionHO> getPermissions() {
+        return permissions;
+    }
+
     public void setPermissions(Set<PermissionHO> permissions) {
         this.permissions = permissions;
     }
-
-
-
-
+   
+ 
 }
 
 

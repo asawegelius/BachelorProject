@@ -1,5 +1,5 @@
 package se.wegelius.accessservice.model.ho;
-// Generated Feb 18, 2017 12:40:42 AM by Hibernate Tools 4.3.1
+// Generated Feb 20, 2017 9:49:45 AM by Hibernate Tools 4.3.1
 
 
 
@@ -42,6 +42,9 @@ public class UserRoleHO  implements java.io.Serializable {
     public void setUser(UserHO user) {
         this.user = user;
     }
+
+
+
 
 }
 

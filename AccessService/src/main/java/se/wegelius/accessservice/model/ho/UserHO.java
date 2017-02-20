@@ -1,5 +1,5 @@
 package se.wegelius.accessservice.model.ho;
-// Generated Feb 18, 2017 12:40:42 AM by Hibernate Tools 4.3.1
+// Generated Feb 20, 2017 9:49:45 AM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -24,38 +24,38 @@ public class UserHO  implements java.io.Serializable {
        this.clients = clients;
        this.userRoles = userRoles;
     }
-   
+
     public Integer getUserId() {
-        return this.userId;
+        return userId;
     }
-    
+
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
+
     public String getUserName() {
-        return this.userName;
+        return userName;
     }
-    
+
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
     public Set<ClientHO> getClients() {
-        return this.clients;
+        return clients;
     }
-    
+
     public void setClients(Set<ClientHO> clients) {
         this.clients = clients;
     }
+
     public Set<UserRoleHO> getUserRoles() {
-        return this.userRoles;
+        return userRoles;
     }
-    
+
     public void setUserRoles(Set<UserRoleHO> userRoles) {
         this.userRoles = userRoles;
     }
-
-
-
 
 }
 

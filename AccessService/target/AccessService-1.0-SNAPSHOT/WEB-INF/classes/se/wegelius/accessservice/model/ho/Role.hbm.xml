@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 20, 2017 9:49:45 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="access_db" name="se.wegelius.accessservice.model.ho.RoleHO" optimistic-lock="version" table="role">
+    <id name="roleId" type="java.lang.Integer">
+      <column name="role_id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="roleName" type="string">
+      <column length="45" name="role_name" not-null="true"/>
+    </property>
+    <property name="roleDescription" type="string">
+      <column length="512" name="role_description"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="rolePermissions" table="role_permission">
+      <key>
+        <column name="role_permission_role_fk" not-null="true"/>
+      </key>
+      <one-to-many class="se.wegelius.accessservice.model.ho.RolePermissionHO"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="userRoles" table="user_role">
+      <key>
+        <column name="user_role_role_fk"/>
+      </key>
+      <one-to-many class="se.wegelius.accessservice.model.ho.UserRoleHO"/>
+    </set>
+  </class>
+</hibernate-mapping>

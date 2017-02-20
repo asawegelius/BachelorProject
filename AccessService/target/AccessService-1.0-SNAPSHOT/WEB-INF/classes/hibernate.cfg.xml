@@ -17,11 +17,11 @@
     <property name="show_sql">true</property>
     <!-- Drop and re-create the database schema on startup -->
     <!-- <property name="hbm2ddl.auto">create</property> -->
+    <mapping resource="se/wegelius/accessservice/model/ho/User.hbm.xml"/>
+    <mapping resource="se/wegelius/accessservice/model/ho/UserRole.hbm.xml"/>
     <mapping resource="se/wegelius/accessservice/model/ho/Permission.hbm.xml"/>
     <mapping resource="se/wegelius/accessservice/model/ho/Client.hbm.xml"/>
-    <mapping resource="se/wegelius/accessservice/model/ho/RolePermission.hbm.xml"/>
-    <mapping resource="se/wegelius/accessservice/model/ho/UserRole.hbm.xml"/>
-    <mapping resource="se/wegelius/accessservice/model/ho/User.hbm.xml"/>
     <mapping resource="se/wegelius/accessservice/model/ho/Role.hbm.xml"/>
+    <mapping resource="se/wegelius/accessservice/model/ho/RolePermission.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

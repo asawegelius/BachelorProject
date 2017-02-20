@@ -31,7 +31,7 @@ import se.wegelius.accessservice.model.ho.UserHO;
  *
  * @author asawe
  */
-@Path("/Users")
+@Path("/users")
 public class UserEndpoint {
 
     private static final org.slf4j.Logger logger = LoggerFactory.getLogger(UserEndpoint.class);
@@ -107,12 +107,9 @@ public class UserEndpoint {
 
 
         // Update.
-        ho.setFirstName(user_name);
-        ho.setLastName(last_name);
-        ho.setEmail(mail);
-        ho.setMobile(mobile);
+        ho.setUserName(user_name);
         dao.update(ho);
-        return Response.ok(toJson(new User(ho.getUserId(), ho.getFirstName(), ho.getLastName(), ho.getEmail(), ho.getMobile())), MediaType.APPLICATION_JSON).build();
+        return Response.ok(toJson(new User(ho.getUserId(), ho.getUserName())), MediaType.APPLICATION_JSON).build();
 
     }
 
