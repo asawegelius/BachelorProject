@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 18, 2017 12:40:42 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="access_db" name="se.wegelius.accessservice.model.ho.RolePermissionHO" optimistic-lock="version" table="role_permission">
+    <id name="rolePermissionId" type="int">
+      <column name="role_permission_id"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="se.wegelius.accessservice.model.ho.PermissionHO" fetch="select" name="permission">
+      <column name="role_permission_permission_fk" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="se.wegelius.accessservice.model.ho.RoleHO" fetch="select" name="role">
+      <column name="role_permission_role_fk" not-null="true"/>
+    </many-to-one>
+  </class>
+</hibernate-mapping>

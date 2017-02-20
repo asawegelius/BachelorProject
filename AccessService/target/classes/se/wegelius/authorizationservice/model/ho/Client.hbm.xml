@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Feb 18, 2017 12:40:42 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="access_db" name="se.wegelius.accessservice.model.ho.ClientHO" optimistic-lock="version" table="client">
+    <id name="clientId" type="int">
+      <column name="client_id"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="se.wegelius.accessservice.model.ho.UserHO" fetch="select" name="user">
+      <column name="client_user_fk"/>
+    </many-to-one>
+    <property name="clientName" type="string">
+      <column length="45" name="client_name"/>
+    </property>
+    <property name="clientDescription" type="string">
+      <column length="2048" name="client_description"/>
+    </property>
+    <property name="redirectUri" type="string">
+      <column length="45" name="redirect_uri"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="permissions" table="permission">
+      <key>
+        <column name="permission_client_fk" not-null="true"/>
+      </key>
+      <one-to-many class="se.wegelius.accessservice.model.ho.PermissionHO"/>
+    </set>
+  </class>
+</hibernate-mapping>
