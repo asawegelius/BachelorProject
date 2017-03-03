@@ -5,11 +5,14 @@
  */
 package se.wegelius.identityservice.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author asawe
  */
-public class Users implements java.io.Serializable {
+@XmlRootElement
+ public class Users implements java.io.Serializable {
 
     private Integer usersId;
     private String firstName;

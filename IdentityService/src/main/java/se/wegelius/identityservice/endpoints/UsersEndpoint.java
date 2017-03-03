@@ -18,6 +18,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -47,7 +48,6 @@ public class UsersEndpoint {
 
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    @Path("/")
     public Response getJson() {
         checkContext();
         Set<UsersHO> set = dao.getAll();
@@ -77,21 +77,23 @@ public class UsersEndpoint {
 
     @POST
     @Produces({MediaType.APPLICATION_JSON})
-    @Path("/create/{first_name}/{last_name}/{email}/{mobile}")
+    @Path("/create")
     public Response createJson(
             @Size(min = 2, max = 45, message = "The first name length should be "
                     + "between 2 and 45 character. ")
             @NotNull(message = "You need to state the first name. ")
-            @PathParam("first_name") String first_name,
+            @QueryParam("first_name") String first_name,
             @Size(min = 2, max = 45, message = "The last name length should be "
                     + "between 2 and 45 character. ")
             @NotNull(message = "You need to state the last name. ")
-            @PathParam("last_name") String last_name,
+            @QueryParam("last_name") String last_name,
             @NotNull(message = "You need to state the e-mail. ")
-            @PathParam("mail") String mail,
-            @PathParam("mobile") String mobile) {
+            @QueryParam("email") String mail,
+            @QueryParam("mobile") String mobile) {
         checkContext();
+        System.out.println("will try to create user " + first_name + " " + last_name + " " + mail);
         String msg = "";
+
         // Require correct mail to create.
         if (!validateEmail(mail)) {
             msg += "the email is incorrect";
@@ -100,6 +102,7 @@ public class UsersEndpoint {
                     type(MediaType.APPLICATION_JSON).
                     build();
         }
+
         if (!(mobile == null) && !validatePhone(mobile)) {
             msg += "the phone number is incorrect";
             return Response.status(Response.Status.BAD_REQUEST).
@@ -113,28 +116,38 @@ public class UsersEndpoint {
         ho.setLastName(last_name);
         ho.setEmail(mail);
         ho.setMobile(mobile);
+
         dao.save(ho);
-        return Response.ok(toJson(new Users(ho.getUsersId(), ho.getFirstName(), ho.getLastName(), ho.getEmail(), ho.getMobile())), MediaType.APPLICATION_JSON).build();
+        
+        String json = "";
+        try {
+            json = new ObjectMapper().writeValueAsString(ho);
+        } catch (Exception e) {
+            System.out.println("json parse error occured");
+        }
+
+        System.out.println(json + " the json string");
+        return Response.ok(json, MediaType.APPLICATION_JSON).build();
     }
 
     @PUT
     @Produces({MediaType.APPLICATION_JSON})
-    @Path("/update/{id: \\d+}/{first_name}/{last_name}/{email}/{mobile}")
+    @Path("/update")
     public Response updateJson(
             @Min(value = 0, message = "The user id should not be less that 0. ")
             @NotNull(message = "You need to state the user id. ")
-            @PathParam("user_id") Integer user_id,
+            @QueryParam("user_id") Integer user_id,
             @Size(min = 2, max = 45, message = "The first name length should be "
                     + "between 2 and 45 character. ")
             @NotNull(message = "You need to state the first name. ")
-            @PathParam("first_name") String first_name,
+            @QueryParam("first_name") String first_name,
             @Size(min = 2, max = 45, message = "The last name length should be "
                     + "between 2 and 45 character. ")
             @NotNull(message = "You need to state the last name. ")
-            @PathParam("last_name") String last_name,
+            @QueryParam("last_name") String last_name,
             @NotNull(message = "You need to state the e-mail. ")
-            @PathParam("mail") String mail,
-            @PathParam("mobile") String mobile) {
+            @QueryParam("email") String mail,
+            @QueryParam("mobile") String mobile) {
         checkContext();
         UsersHO ho = dao.findByID(user_id);
         // Check that sufficient data are present to do an edit.
@@ -161,7 +174,13 @@ public class UsersEndpoint {
         ho.setEmail(mail);
         ho.setMobile(mobile);
         dao.update(ho);
-        return Response.ok(toJson(new Users(ho.getUsersId(), ho.getFirstName(), ho.getLastName(), ho.getEmail(), ho.getMobile())), MediaType.APPLICATION_JSON).build();
+        String json = "";
+        try {
+            json = new ObjectMapper().writeValueAsString(ho);
+        } catch (Exception e) {
+            System.out.println("json parse error occured");
+        }
+        return Response.ok(json, MediaType.APPLICATION_JSON).build();
 
     }
 
@@ -201,6 +220,7 @@ public class UsersEndpoint {
         try {
             json = new ObjectMapper().writeValueAsString(user);
         } catch (Exception e) {
+            System.out.println("json parse error occured");
         }
         return json;
     }
@@ -211,6 +231,7 @@ public class UsersEndpoint {
         try {
             json = new ObjectMapper().writeValueAsString(userSet);
         } catch (Exception e) {
+            System.out.println("json parse error occured");
         }
         return json;
     }
@@ -218,19 +239,22 @@ public class UsersEndpoint {
     public static final Pattern VALID_EMAIL_ADDRESS_REGEX
             = Pattern.compile("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$", Pattern.CASE_INSENSITIVE);
 
-    public static boolean validateEmail(String emailStr) {
+    public boolean validateEmail(String emailStr) {
+        System.out.println("validating email   " + emailStr);
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
-        return matcher.find();
+        boolean valid = matcher.find();
+        System.out.println("validating email  and got " + valid);
+        return valid;
     }
 
     /**
      * Regular expression for a Danish phone number
      */
     public static final Pattern VALID_PHONE_NUMBER_REGEX
-            = Pattern.compile("^((\\(?\\+45\\)?)?)(\\s?\\d{2}\\s?\\d{2}\\s?\\d{2}\\s?\\d{2})$", Pattern.CASE_INSENSITIVE);
+            = Pattern.compile("^(?!\\s*$)[0-9\\s]{8}$", Pattern.CASE_INSENSITIVE);
 
-    public static boolean validatePhone(String phoneStr) {
-        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(phoneStr);
+    public boolean validatePhone(String phoneStr) {
+        Matcher matcher = VALID_PHONE_NUMBER_REGEX.matcher(phoneStr);
         return matcher.find();
     }
 }

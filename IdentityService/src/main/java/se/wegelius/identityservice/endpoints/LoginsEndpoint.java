@@ -49,7 +49,7 @@ public class LoginsEndpoint {
         Set<LoginsHO> set = dao.getAll();
         Set<Logins> logins = new HashSet<>();
         for (LoginsHO ho : set) {
-            logins.add(new Logins(ho.getLoginsId(), ho.getUsers().getUsersId(), ho.getPasswordSalt(), ho.getPasswordHash()));
+            logins.add(new Logins(ho.getLoginsId(), ho.getUsers().getEmail(), ho.getPasswordSalt(), ho.getPasswordHash()));
         }
         return Response.ok(toJson(logins), "application/json").build();
     }
@@ -67,7 +67,7 @@ public class LoginsEndpoint {
                     type(MediaType.APPLICATION_JSON).
                     build();
         } else {
-            return Response.ok(toJson(new Logins(ho.getLoginsId(), ho.getUsers().getUsersId(), ho.getPasswordSalt(), ho.getPasswordHash())), "application/json").build();
+            return Response.ok(toJson(new Logins(ho.getLoginsId(), ho.getUsers().getEmail(), ho.getPasswordSalt(), ho.getPasswordHash())), "application/json").build();
         }
     }
 
@@ -99,7 +99,7 @@ public class LoginsEndpoint {
         ho.setPasswordSalt(password_salt);
         ho.setPasswordHash(password_hash);
         dao.save(ho);
-        return Response.ok(toJson(new Logins(ho.getLoginsId(), ho.getUsers().getUsersId(), ho.getPasswordSalt(), ho.getPasswordHash())), MediaType.APPLICATION_JSON).build();
+        return Response.ok(toJson(new Logins(ho.getLoginsId(), ho.getUsers().getEmail(), ho.getPasswordSalt(), ho.getPasswordHash())), MediaType.APPLICATION_JSON).build();
     }
 
     @PUT
@@ -132,7 +132,7 @@ public class LoginsEndpoint {
             ho.setPasswordSalt(password_salt);
             ho.setPasswordHash(password_hash);
             dao.update(ho);
-            return Response.ok(toJson(new Logins(ho.getLoginsId(), ho.getUsers().getUsersId(), ho.getPasswordSalt(), ho.getPasswordHash())), MediaType.APPLICATION_JSON).build();
+            return Response.ok(toJson(new Logins(ho.getLoginsId(), ho.getUsers().getEmail(), ho.getPasswordSalt(), ho.getPasswordHash())), MediaType.APPLICATION_JSON).build();
         }
         return Response.status(Response.Status.BAD_REQUEST).
                 entity(msg).
@@ -171,7 +171,7 @@ public class LoginsEndpoint {
         }
     }
 
-    // Events --> JSON document
+    // Logins --> JSON document
     private String toJson(Logins logins) {
         String json = "If you see this, there's a problem.";
         try {
@@ -181,7 +181,7 @@ public class LoginsEndpoint {
         return json;
     }
 
-    // Events set --> JSON document
+    // Logins set --> JSON document
     private String toJson(Set<Logins> loginsSet) {
         String json = "If you see this, there's a problem.";
         try {

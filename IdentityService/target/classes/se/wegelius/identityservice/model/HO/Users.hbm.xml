@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Feb 15, 2017 4:29:05 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Feb 17, 2017 7:42:39 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
   <class catalog="identity_db" name="se.wegelius.identityservice.model.HO.UsersHO" optimistic-lock="version" table="users">
     <id name="usersId" type="java.lang.Integer">
@@ -21,7 +21,7 @@
     </property>
     <set fetch="select" inverse="true" lazy="true" name="loginses" table="logins">
       <key>
-        <column name="user_name" unique="true"/>
+        <column name="logins_user_fk"/>
       </key>
       <one-to-many class="se.wegelius.identityservice.model.HO.LoginsHO"/>
     </set>

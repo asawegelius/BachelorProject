@@ -1,5 +1,5 @@
 package se.wegelius.identityservice.model.HO;
-// Generated Feb 15, 2017 4:29:05 PM by Hibernate Tools 4.3.1
+// Generated Feb 17, 2017 7:42:39 PM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -16,7 +16,7 @@ public class UsersHO  implements java.io.Serializable {
      private String lastName;
      private String email;
      private String mobile;
-     private Set<LoginsHO> loginses = new HashSet<>(0);
+     private Set<LoginsHO> loginses = new HashSet<LoginsHO>(0);
 
     public UsersHO() {
     }
@@ -28,57 +28,49 @@ public class UsersHO  implements java.io.Serializable {
        this.mobile = mobile;
        this.loginses = loginses;
     }
-
+   
     public Integer getUsersId() {
-        return usersId;
+        return this.usersId;
     }
-
+    
     public void setUsersId(Integer usersId) {
         this.usersId = usersId;
     }
-
     public String getFirstName() {
-        return firstName;
+        return this.firstName;
     }
-
+    
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
     public String getLastName() {
-        return lastName;
+        return this.lastName;
     }
-
+    
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
     public String getEmail() {
-        return email;
+        return this.email;
     }
-
+    
     public void setEmail(String email) {
         this.email = email;
     }
-
     public String getMobile() {
-        return mobile;
+        return this.mobile;
     }
-
+    
     public void setMobile(String mobile) {
         this.mobile = mobile;
     }
-
     public Set<LoginsHO> getLoginses() {
-        return loginses;
+        return this.loginses;
     }
-
+    
     public void setLoginses(Set<LoginsHO> loginses) {
         this.loginses = loginses;
     }
-   
-
-  
 
 
 

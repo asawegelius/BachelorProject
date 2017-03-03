@@ -1,5 +1,5 @@
 package se.wegelius.identityservice.model.HO;
-// Generated Feb 15, 2017 4:29:05 PM by Hibernate Tools 4.3.1
+// Generated Feb 17, 2017 7:42:39 PM by Hibernate Tools 4.3.1
 
 
 
