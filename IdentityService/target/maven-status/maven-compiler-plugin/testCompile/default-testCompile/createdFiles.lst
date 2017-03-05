@@ -1,0 +1,3 @@
+se\wegelius\identityservice\endpoints\UsersEndpointTest.class
+se\wegelius\identityservice\dao\UsersDaoTest.class
+se\wegelius\identityservice\endpoints\RestUtil.class

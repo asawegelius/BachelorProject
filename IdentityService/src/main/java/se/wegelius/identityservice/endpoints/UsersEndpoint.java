@@ -116,9 +116,10 @@ public class UsersEndpoint {
         ho.setLastName(last_name);
         ho.setEmail(mail);
         ho.setMobile(mobile);
-
+System.out.println("creating " + mail);
         dao.save(ho);
         
+System.out.println("id " + ho.getUsersId());
         String json = "";
         try {
             json = new ObjectMapper().writeValueAsString(ho);
@@ -149,6 +150,7 @@ public class UsersEndpoint {
             @QueryParam("email") String mail,
             @QueryParam("mobile") String mobile) {
         checkContext();
+        System.out.println(user_id);
         UsersHO ho = dao.findByID(user_id);
         // Check that sufficient data are present to do an edit.
         String msg = "";
@@ -174,11 +176,14 @@ public class UsersEndpoint {
         ho.setEmail(mail);
         ho.setMobile(mobile);
         dao.update(ho);
+        System.out.println("user updated to " + ho.getFirstName() + " " + ho.getLastName() + " "
+            + ho.getEmail() + " " + ho.getMobile() + " "+ ho.getUsersId());
         String json = "";
         try {
             json = new ObjectMapper().writeValueAsString(ho);
         } catch (Exception e) {
             System.out.println("json parse error occured");
+            System.out.println(e.getMessage());
         }
         return Response.ok(json, MediaType.APPLICATION_JSON).build();
 
@@ -198,6 +203,7 @@ public class UsersEndpoint {
                     type(MediaType.APPLICATION_JSON).
                     build();
         }
+System.out.println("deleting for id  " + id);
         dao.delete(ho);
         msg = "User " + id + " deleted.";
 
