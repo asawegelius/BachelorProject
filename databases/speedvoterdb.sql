@@ -1,10 +1,16 @@
+
+DROP DATABASE IF EXISTS `speedvoterdb`;
+CREATE DATABASE `speedvoterdb` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_danish_ci */;
+USE `speedvoterdb`;
+
+DROP DATABASE IF EXISTS `orgs`;
 CREATE TABLE `orgs` (
   `org_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `orgname` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`org_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+DROP DATABASE IF EXISTS `events`;
 CREATE TABLE `events` (
   `event_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `event_name` varchar(45) DEFAULT NULL,
@@ -16,7 +22,7 @@ CREATE TABLE `events` (
   CONSTRAINT `events_org_id_fk` FOREIGN KEY (`events_org_id_fk`) REFERENCES `orgs` (`org_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+DROP DATABASE IF EXISTS `elections`;
 CREATE TABLE `elections` (
   `election_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `post` varchar(45) DEFAULT NULL,
@@ -31,7 +37,7 @@ CREATE TABLE `elections` (
   CONSTRAINT `elections_event_id_fk` FOREIGN KEY (`elections_event_id_fk`) REFERENCES `events` (`event_id`) 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+DROP DATABASE IF EXISTS `voter`;
 CREATE TABLE `voter` (
   `voter_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `member_code` varchar(10) DEFAULT NULL,
@@ -44,7 +50,7 @@ CREATE TABLE `voter` (
   CONSTRAINT `voter_org_id_fk` FOREIGN KEY (`voter_org_id_fk`) REFERENCES `orgs` (`org_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+DROP DATABASE IF EXISTS `gate`;
 CREATE TABLE `gate` (
   `gate_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `gate_event_id_fk` int(10) unsigned NOT NULL,
@@ -60,7 +66,7 @@ CREATE TABLE `gate` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-
+DROP DATABASE IF EXISTS `options`;
 CREATE TABLE `options` (
   `option_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `the_option` varchar(45) DEFAULT NULL,
@@ -71,7 +77,7 @@ CREATE TABLE `options` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-
+DROP DATABASE IF EXISTS `series`;
 CREATE TABLE `series` (
   `series_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `access_code` varchar(16) DEFAULT NULL,
@@ -81,7 +87,7 @@ CREATE TABLE `series` (
   UNIQUE KEY `access_code_UNIQUE` (`access_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+DROP DATABASE IF EXISTS `speakers`;
 CREATE TABLE `speakers` (
   `speakers_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `speakers_access_code_fk` varchar(16) DEFAULT NULL,
@@ -94,7 +100,7 @@ CREATE TABLE `speakers` (
   CONSTRAINT `speakers_event_id_fk` FOREIGN KEY (`speakers_event_id_fk`) REFERENCES `events` (`event_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+DROP DATABASE IF EXISTS `users`;
 CREATE TABLE `users` (
   `user_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `email` varchar(60) NOT NULL,
@@ -105,6 +111,7 @@ CREATE TABLE `users` (
   KEY `userpassword_idx` (`userpassword`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP DATABASE IF EXISTS `userrights`;
 CREATE TABLE `userrights` (
   `userrights_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `level` int(11) NOT NULL,
@@ -113,6 +120,7 @@ CREATE TABLE `userrights` (
   PRIMARY KEY (`userrights_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP DATABASE IF EXISTS `users_userrights`;
 CREATE TABLE `users_userrights` (
   `users_userrights_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `users_userrights_userrights_id_fk` int(10) unsigned NOT NULL,
@@ -124,6 +132,7 @@ CREATE TABLE `users_userrights` (
   CONSTRAINT `users_userrights_user_id_fk` FOREIGN KEY (`users_userrights_user_id_fk`) REFERENCES `users` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP DATABASE IF EXISTS `votes`;
 CREATE TABLE `votes` (
   `vote_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `votes_option_id_fk` int(10) unsigned NOT NULL,
@@ -135,6 +144,7 @@ CREATE TABLE `votes` (
   CONSTRAINT `votes_option_id_fk` FOREIGN KEY (`votes_option_id_fk`) REFERENCES `options` (`option_id`) 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+DROP DATABASE IF EXISTS  `voters_votes`;
 CREATE TABLE `voters_votes` (
   `voters_vote_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `voters_votes_access_code_fk` varchar(16) NOT NULL,
